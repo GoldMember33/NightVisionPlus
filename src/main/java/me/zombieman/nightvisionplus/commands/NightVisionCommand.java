@@ -5,16 +5,12 @@ import me.zombieman.nightvisionplus.data.PlayerData;
 import me.zombieman.nightvisionplus.effects.PlayerEffects;
 import me.zombieman.nightvisionplus.utils.ColorUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.UUID;
 
 public class NightVisionCommand implements CommandExecutor {
@@ -27,7 +23,7 @@ public class NightVisionCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage("You can't run this command from the console");
+            sender.sendMessage(ColorUtils.color("&cYou can't run this command from the console"));
             return true;
         }
 
@@ -45,7 +41,7 @@ public class NightVisionCommand implements CommandExecutor {
                 Player target = Bukkit.getPlayerExact(targetName);
 
                 if (target == null) {
-                    player.sendMessage(ChatColor.RED + "'" + targetName + "'" + " isn't online.");
+                    player.sendMessage(ColorUtils.color("'" + targetName + "'" + " isn't online."));
                 } else {
                     UUID tUUID = target.getUniqueId();
 
@@ -64,6 +60,7 @@ public class NightVisionCommand implements CommandExecutor {
                                         .replace("%player%", player.getName())
                                         .replace("%target-player%", targetName)));
                             }
+
                         } else {
                             playerDataConfig.set("nightVision.player." + tUUID + ".nvp", false);
                             playerDataConfig.set("nightVision.player." + tUUID + ".ign", targetName);
@@ -79,9 +76,10 @@ public class NightVisionCommand implements CommandExecutor {
                             }
                         }
                     } else {
-                        player.sendMessage(ChatColor.RED + "You don't have permission to apply effects to other players.");
+                        player.sendMessage(ColorUtils.color("&cYou don't have permission to apply effects to other players."));
                     }
                 }
+
             } else {
                 if (!wantsEnable) {
                     pEffects.pEffect(player, true);
@@ -99,8 +97,9 @@ public class NightVisionCommand implements CommandExecutor {
                 }
             }
         } else {
-            player.sendMessage(ChatColor.RED + "You don't have permission to run this command.");
+            player.sendMessage(ColorUtils.color("&cYou don't have permission to run this command."));
         }
+
         return true;
     }
 }

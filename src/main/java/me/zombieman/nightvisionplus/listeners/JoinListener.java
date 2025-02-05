@@ -5,14 +5,12 @@ import me.zombieman.nightvisionplus.data.PlayerData;
 import me.zombieman.nightvisionplus.effects.PlayerEffects;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.io.File;
 import java.util.UUID;
 
 public class JoinListener implements Listener {

@@ -2,11 +2,11 @@ package me.zombieman.nightvisionplus;
 
 import me.zombieman.nightvisionplus.commands.MainCommands;
 import me.zombieman.nightvisionplus.commands.NightVisionCommand;
+import me.zombieman.nightvisionplus.commands.NightVisionToggleCommand;
 import me.zombieman.nightvisionplus.data.PlayerData;
 import me.zombieman.nightvisionplus.data.PlayerManager;
 import me.zombieman.nightvisionplus.effects.PlayerEffects;
 import me.zombieman.nightvisionplus.listeners.*;
-import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -29,6 +29,7 @@ public final class NightVisionPlus extends JavaPlugin {
 
         getCommand("night-vision").setExecutor(new NightVisionCommand(this));
         getCommand("nightvisionplus").setExecutor(new MainCommands(this));
+        getCommand("night-vision-toggle").setExecutor(new NightVisionToggleCommand(this));
 
         new PlayerData();
         new PlayerManager(this);

@@ -7,19 +7,13 @@ import me.zombieman.nightvisionplus.utils.ColorUtils;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.md_5.bungee.api.ChatColor;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.checkerframework.checker.units.qual.A;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -35,9 +29,10 @@ public class MainCommands implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "This command can only be run by a player.");
+            sender.sendMessage(ColorUtils.color("&cThis command can only be run by a player."));
             return true;
         }
+
         Player player = (Player) sender;
         UUID pUUID = player.getUniqueId();
         FileConfiguration playerDataConfig = PlayerData.getPlayerDataConfig(plugin, pUUID);
@@ -56,7 +51,7 @@ public class MainCommands implements CommandExecutor, TabCompleter {
                         player.sendMessage(ColorUtils.color("&aSuccessfully reloaded the config files in (" + elapsedTime + "ms)"));
 
                     } catch (Exception e) {
-                        player.sendMessage(ChatColor.RED + "An error occurred while reloading the plugin: " + e.getMessage());
+                        player.sendMessage(ColorUtils.color("&cAn error occurred while reloading the plugin: " + e.getMessage()));
                     }
                 } else if (args[0].equalsIgnoreCase("reset")) {
                     if (args[1].equalsIgnoreCase("config.yml")) {
@@ -65,13 +60,13 @@ public class MainCommands implements CommandExecutor, TabCompleter {
                         plugin.reloadConfig();
                         long endTime = System.currentTimeMillis();
                         long time = endTime - startTime + 1;
-                        player.sendMessage(ChatColor.GREEN + "You successfully reset " + args[1] + ChatColor.AQUA + " (" + time + "ms)");
+                        player.sendMessage(ColorUtils.color("&2You successfully reset " + args[1] + " &b(" + time + "ms)"));
                     } else if (args[1].equalsIgnoreCase("playerData")) {
                         long startTime = System.currentTimeMillis();
                         PlayerData.removeAllPlayerFiles(plugin);
                         long endTime = System.currentTimeMillis();
                         long time = endTime - startTime + 1;
-                        player.sendMessage(ChatColor.GREEN + "You successfully reset " + args[1] + ChatColor.AQUA + " (" + time + "ms)");
+                        player.sendMessage(ColorUtils.color("&2You successfully reset " + args[1] + " &b(" + time + "ms)"));
                     } else if (args[1].equalsIgnoreCase("all")) {
                         long startTime = System.currentTimeMillis();
                         plugin.saveResource("config.yml", true);
@@ -79,9 +74,9 @@ public class MainCommands implements CommandExecutor, TabCompleter {
                         PlayerData.removeAllPlayerFiles(plugin);
                         long endTime = System.currentTimeMillis();
                         long time = endTime - startTime + 1;
-                        player.sendMessage(ChatColor.GREEN + "You successfully reset all configs " + ChatColor.AQUA + "(" + time + "ms)");
+                        player.sendMessage(ColorUtils.color("&2You successfully reset all configs " + " &b(" + time + "ms)"));
                     } else {
-                        player.sendMessage(ChatColor.YELLOW + "/nvp reset <all, config.yml, PlayerData>");
+                        player.sendMessage(ColorUtils.color( "&e/nvp reset <all, config.yml, PlayerData>"));
                     }
                 } else {
                     player.sendMessage(MiniMessage.miniMessage().deserialize("""
@@ -109,16 +104,10 @@ public class MainCommands implements CommandExecutor, TabCompleter {
                 }
             }
         } else {
-            player.sendMessage(ChatColor.RED + "You don't have permission to run this command.");
+            player.sendMessage(ColorUtils.color("&cYou don't have permission to run this command."));
         }
+
         return false;
-    }
-    private void savePlayerDataConfig(FileConfiguration config, File configFile) {
-        try {
-            config.save(configFile);
-        } catch (IOException e) {
-            throw new RuntimeException("An error occurred while saving the player data config.", e);
-        }
     }
 
     @Override
@@ -142,6 +131,7 @@ public class MainCommands implements CommandExecutor, TabCompleter {
                 }
             }
         }
+
         String lastArg = args[args.length - 1].toUpperCase();
         return completions.stream().filter(s -> s.toUpperCase().startsWith(lastArg.toUpperCase())).collect(Collectors.toList());
     }

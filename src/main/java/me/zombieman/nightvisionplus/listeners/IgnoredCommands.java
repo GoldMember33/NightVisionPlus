@@ -5,14 +5,12 @@ import me.zombieman.nightvisionplus.data.PlayerData;
 import me.zombieman.nightvisionplus.effects.PlayerEffects;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -36,6 +34,9 @@ public class IgnoredCommands implements Listener {
             List<String> ignoredCommands = new ArrayList<>();
             ignoredCommands.add("/nv");
             ignoredCommands.add("/night-vision");
+            ignoredCommands.add("/nvt");
+            ignoredCommands.add("nvisiontoggle");
+            ignoredCommands.add("/night-vision-toggle");
             ignoredCommands.add("/nightvisionplus:night-vision");
             ignoredCommands.add("/nightvisionplus:nv");
             ignoredCommands.add("/nightvisionplus:nightvisionplus reset");
