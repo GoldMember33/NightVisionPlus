@@ -1,0 +1,16 @@
+name: NightVisionPlus
+version: '2.2.8'
+main: me.zombieman.nightvisionplus.NightVisionPlus
+api-version: 1.13
+authors: [ GoldMember33 ]
+commands:
+  night-vision:
+    aliases:
+      - nv
+  nightvisionplus:
+    aliases:
+      - nvp
+  night-vision-toggle:
+    aliases:
+      - nvt
+      - nvisiontoggle
