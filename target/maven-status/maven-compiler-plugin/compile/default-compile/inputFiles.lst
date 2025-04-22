@@ -1,10 +1,13 @@
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/listeners/MilkConsumeEvent.java
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/commands/MainCommands.java
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/effects/PlayerEffects.java
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/data/PlayerData.java
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/NightVisionPlus.java
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/utils/ColorUtils.java
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/listeners/IgnoredCommands.java
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/listeners/JoinListener.java
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/listeners/DeathListener.java
-/Users/admin/IdeaProjects/NightVisionPlus/src/main/java/me/zombieman/nightvisionplus/commands/NightVisionCommand.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\data\PlayerManager.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\listeners\MilkConsumeEvent.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\listeners\PlayerListener.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\utils\ColorUtils.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\data\PlayerData.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\NightVisionPlus.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\listeners\IgnoredCommands.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\effects\PlayerEffects.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\commands\NightVisionCommand.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\listeners\DeathListener.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\commands\MainCommands.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\listeners\JoinListener.java
+C:\Users\Windows\Documents\Projetos\Plugins de Minecraft\NightVisionPlus\src\main\java\me\zombieman\nightvisionplus\commands\NightVisionToggleCommand.java

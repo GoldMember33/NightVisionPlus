@@ -22,12 +22,10 @@ public class NightVisionCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ColorUtils.color("&cYou can't run this command from the console"));
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("canNotRunCommandFromConsole")));
             return true;
         }
-
-        Player player = (Player) sender;
 
         PlayerEffects pEffects = new PlayerEffects();
 
@@ -41,7 +39,8 @@ public class NightVisionCommand implements CommandExecutor {
                 Player target = Bukkit.getPlayerExact(targetName);
 
                 if (target == null) {
-                    player.sendMessage(ColorUtils.color("'" + targetName + "'" + " isn't online."));
+                    player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("targetPlayerIsNotOnline")
+                                       .replace("%target-player%", targetName)));
                 } else {
                     UUID tUUID = target.getUniqueId();
 
@@ -52,11 +51,11 @@ public class NightVisionCommand implements CommandExecutor {
                             playerDataConfig.set("nightVision.player." + tUUID + ".ign", targetName);
                             PlayerData.savePlayerData(plugin, target);
                             pEffects.pEffect(target, true);
-                            player.sendMessage(ColorUtils.color(plugin.getConfig().getString("enableMessageOthers")
+                            player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("enableMessageOthers")
                                     .replace("%player%", player.getName())
                                     .replace("%target-player%", targetName)));
                             if (target != player) {
-                                target.sendMessage(ColorUtils.color(plugin.getConfig().getString("enableMessageToOther")
+                                target.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("enableMessageToOther")
                                         .replace("%player%", player.getName())
                                         .replace("%target-player%", targetName)));
                             }
@@ -66,17 +65,17 @@ public class NightVisionCommand implements CommandExecutor {
                             playerDataConfig.set("nightVision.player." + tUUID + ".ign", targetName);
                             PlayerData.savePlayerData(plugin, target);
                             pEffects.pEffect(target, false);
-                            player.sendMessage(ColorUtils.color(plugin.getConfig().getString("disableMessageOthers")
+                            player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("disableMessageOthers")
                                     .replace("%player%", player.getName())
                                     .replace("%target-player%", targetName)));
                             if (target != player) {
-                                target.sendMessage(ColorUtils.color(plugin.getConfig().getString("disableMessageToOther")
+                                target.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("disableMessageToOther")
                                         .replace("%player%", player.getName())
                                         .replace("%target-player%", targetName)));
                             }
                         }
                     } else {
-                        player.sendMessage(ColorUtils.color("&cYou don't have permission to apply effects to other players."));
+                        player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("noPermissionToApplyEffectToOthers")));
                     }
                 }
 
@@ -87,17 +86,17 @@ public class NightVisionCommand implements CommandExecutor {
                     playerDataConfig.set("nightVision.player." + pUUID + ".nvp", true);
                     playerDataConfig.set("nightVision.player." + pUUID + ".ign", player.getName());
                     PlayerData.savePlayerData(plugin, player);
-                    player.sendMessage(ColorUtils.color(plugin.getConfig().getString("enableMessage")));
+                    player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("enableMessage")));
                 } else {
                     pEffects.pEffect(player, false);
                     playerDataConfig.set("nightVision.player." + pUUID + ".nvp", false);
                     playerDataConfig.set("nightVision.player." + pUUID + ".ign", player.getName());
                     PlayerData.savePlayerData(plugin, player);
-                    player.sendMessage(ColorUtils.color(plugin.getConfig().getString("disableMessage")));
+                    player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("disableMessage")));
                 }
             }
         } else {
-            player.sendMessage(ColorUtils.color("&cYou don't have permission to run this command."));
+            player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("noPermissionToPerformCommands")));
         }
 
         return true;

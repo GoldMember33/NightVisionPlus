@@ -28,12 +28,11 @@ public class MainCommands implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ColorUtils.color("&cThis command can only be run by a player."));
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("canNotRunCommandFromPlayer")));
             return true;
         }
 
-        Player player = (Player) sender;
         UUID pUUID = player.getUniqueId();
         FileConfiguration playerDataConfig = PlayerData.getPlayerDataConfig(plugin, pUUID);
         PlayerEffects pEffects = new PlayerEffects();
@@ -48,11 +47,14 @@ public class MainCommands implements CommandExecutor, TabCompleter {
                         long endTime = System.currentTimeMillis();
                         long elapsedTime = endTime - startTime;
 
-                        player.sendMessage(ColorUtils.color("&aSuccessfully reloaded the config files in (" + elapsedTime + "ms)"));
+                        player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("pluginReloaded")
+                                .replace("%elapsed-time%", String.valueOf(elapsedTime))));
 
                     } catch (Exception e) {
-                        player.sendMessage(ColorUtils.color("&cAn error occurred while reloading the plugin: " + e.getMessage()));
+                        plugin.getComponentLogger().error(ColorUtils.deserialize(plugin.getConfig().getString("pluginReloadError")
+                                .replace("%error%", e.getMessage())));
                     }
+
                 } else if (args[0].equalsIgnoreCase("reset")) {
                     if (args[1].equalsIgnoreCase("config.yml")) {
                         long startTime = System.currentTimeMillis();
@@ -60,13 +62,17 @@ public class MainCommands implements CommandExecutor, TabCompleter {
                         plugin.reloadConfig();
                         long endTime = System.currentTimeMillis();
                         long time = endTime - startTime + 1;
-                        player.sendMessage(ColorUtils.color("&2You successfully reset " + args[1] + " &b(" + time + "ms)"));
+                        player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("configResetSuccessfully")
+                                .replace("%config%", args[1])
+                                .replace("%elapsed-time%", String.valueOf(time))));
                     } else if (args[1].equalsIgnoreCase("playerData")) {
                         long startTime = System.currentTimeMillis();
                         PlayerData.removeAllPlayerFiles(plugin);
                         long endTime = System.currentTimeMillis();
                         long time = endTime - startTime + 1;
-                        player.sendMessage(ColorUtils.color("&2You successfully reset " + args[1] + " &b(" + time + "ms)"));
+                        player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("configResetSuccessfully")
+                                .replace("%config%", args[1])
+                                .replace("%elapsed-time%", String.valueOf(time))));
                     } else if (args[1].equalsIgnoreCase("all")) {
                         long startTime = System.currentTimeMillis();
                         plugin.saveResource("config.yml", true);
@@ -74,9 +80,10 @@ public class MainCommands implements CommandExecutor, TabCompleter {
                         PlayerData.removeAllPlayerFiles(plugin);
                         long endTime = System.currentTimeMillis();
                         long time = endTime - startTime + 1;
-                        player.sendMessage(ColorUtils.color("&2You successfully reset all configs " + " &b(" + time + "ms)"));
+                        player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("allConfigsResetSuccessfully")
+                                .replace("%elapsed-time%", String.valueOf(time))));
                     } else {
-                        player.sendMessage(ColorUtils.color( "&e/nvp reset <all, config.yml, PlayerData>"));
+                        player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("nvpCommandResetUsage")));
                     }
                 } else {
                     player.sendMessage(MiniMessage.miniMessage().deserialize("""
@@ -94,17 +101,17 @@ public class MainCommands implements CommandExecutor, TabCompleter {
                     playerDataConfig.set("nightVision.player." + pUUID + ".nvp", true);
                     playerDataConfig.set("nightVision.player." + pUUID + ".ign", player.getName());
                     PlayerData.savePlayerData(plugin, player);
-                    player.sendMessage(ColorUtils.color(plugin.getConfig().getString("enableMessage")));
+                    player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("enableMessage")));
                 } else {
                     pEffects.pEffect(player, false);
                     playerDataConfig.set("nightVision.player." + pUUID + ".nvp", false);
                     playerDataConfig.set("nightVision.player." + pUUID + ".ign", player.getName());
                     PlayerData.savePlayerData(plugin, player);
-                    player.sendMessage(ColorUtils.color(plugin.getConfig().getString("disableMessage")));
+                    player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("disableMessage")));
                 }
             }
         } else {
-            player.sendMessage(ColorUtils.color("&cYou don't have permission to run this command."));
+            player.sendMessage(ColorUtils.deserialize(plugin.getConfig().getString("noPermissionToPerformCommands")));
         }
 
         return false;

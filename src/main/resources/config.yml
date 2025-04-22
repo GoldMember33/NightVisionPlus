@@ -1,14 +1,27 @@
-enableMessage: '&aYou enabled night vision'
-disableMessage: '&cYou disabled night vision'
+enableMessage: '<green>You enabled night vision</green>'
+disableMessage: '<red>>You disabled night vision</red>'
 
-toggledMessage: '&aYou toggled night vision to&r %status%&a!'
-toggleErrorMessage: '&cInvalid argument. Please use true or false.'
+canNotRunCommandFromConsole: '<red>You can not run this command from the console!</red>'
+canNotRunCommandFromPlayer: '<red>This command can only be run by a player!</red>'
+targetPlayerIsNotOnline: '<red>Player</red> <yellow>%target-player%</yellow> <red>is not online!</red>'
+noPermissionToPerformCommands: '<red>You don not have the permission to run this command!</red>'
+noPermissionToApplyEffectToOthers: '<red>You do not have the permission to apply effects to other players!</red>'
 
-nightVisionEnabled: '&6Enabled'
-nightVisionDisabled: '&4Disabled'
+pluginReloaded: '<green>Successfully reloaded the config files in </green><yellow>(" + %elapsed-time% + "ms)</yellow>'
+pluginReloadError: '<red>An error occurred while reloading the plugin: </red><purple>%error%</purple><red>!</red>'
+configResetSuccessfully: '<green>You successfully reset</green> <blue>%config%</blue> <green>in</green> <yellow>(" + %elapsed-time% + "ms)</yellow>'
+allConfigsResetSuccessfully: '<green>You successfully reset all configs in</green> <yellow>(" + %elapsed-time% + "ms)</yellow>'
 
-enableMessageOthers: '&aYou enabled night vision for: %target-player%'
-disableMessageOthers: '&cYou disabled night vision for: %target-player%'
+nvpCommandResetUsage: '<aqua>Usage:</aqua> <white>/nvp</white> <yellow>reset</yellow> <green><all, config.yml, PlayerData></green>'
 
-enableMessageToOther: '&a%player% gave you enabled night vision'
-disableMessageToOther: '&c%player% removed your night vision'
+toggledMessage: '<green>You toggled night vision to</green><reset> %status%<green>!</green>'
+toggleErrorMessage: '<red>Invalid argument. Please use true or false.</red>'
+
+nightVisionEnabled: '<gold>Enabled</gold>'
+nightVisionDisabled: '<dark_red>Disabled</dark_red>'
+
+enableMessageOthers: '<green>You enabled night vision for:</green> <yellow>%target-player%</yellow>'
+disableMessageOthers: '<red>You disabled night vision for:</red> <yellow>%target-player%</yellow>'
+
+enableMessageToOther: '<green>%player% gave you enabled night vision</green>'
+disableMessageToOther: '<yellow>%player%</yellow> <red>removed your night vision!</red>'

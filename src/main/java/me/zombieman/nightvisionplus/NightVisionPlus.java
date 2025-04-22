@@ -10,8 +10,12 @@ import me.zombieman.nightvisionplus.listeners.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class NightVisionPlus extends JavaPlugin {
+
+    private PlayerManager playerManager;
 
     @Override
     public void onEnable() {
@@ -32,7 +36,7 @@ public final class NightVisionPlus extends JavaPlugin {
         getCommand("night-vision-toggle").setExecutor(new NightVisionToggleCommand(this));
 
         new PlayerData();
-        new PlayerManager(this);
+        this.playerManager = new PlayerManager(this);
         new PlayerEffects();
 
         new JoinListener(this);
@@ -45,5 +49,9 @@ public final class NightVisionPlus extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public PlayerManager getPlayerManager() {
+        return playerManager;
     }
 }

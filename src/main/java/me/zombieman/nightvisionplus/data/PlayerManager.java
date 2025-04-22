@@ -16,7 +16,7 @@ public class PlayerManager {
     public void savePlayerData(Player p, boolean b) {
         UUID pUUID = p.getUniqueId();
         String pName = p.getName();
-        String path = "nightVision.players." + pUUID;
+        String path = "nightVision.player." + pUUID;
         FileConfiguration playerDataConfig = PlayerData.getPlayerDataConfig(plugin, pUUID);
 
         if (b) {

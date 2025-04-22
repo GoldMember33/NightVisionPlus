@@ -1,7 +1,9 @@
 name: NightVisionPlus
-version: '2.2.7'
+version: '2.3.0'
 main: me.zombieman.nightvisionplus.NightVisionPlus
 api-version: 1.13
+author: ZombieMan33
+authors: [ GoldMember33 ]
 commands:
   night-vision:
     aliases:
@@ -9,3 +11,7 @@ commands:
   nightvisionplus:
     aliases:
       - nvp
+  night-vision-toggle:
+    aliases:
+      - nvt
+      - nvisiontoggle
